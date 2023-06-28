@@ -22,7 +22,7 @@ const Timer = styled.p`
     font-size: 4rem;
 `;
 
-const Pomodoro1 = () => {
+const Pomodoro = () => {
   const [selectTime, setSelectTime] = useState(25 * 60); // Selected time in seconds
   const [Running, setRunning] = useState(false);
   const [Break, setBreak] = useState(false);
@@ -106,4 +106,4 @@ const Pomodoro1 = () => {
   );
 };
 
-export default Pomodoro1;
+export default Pomodoro;
