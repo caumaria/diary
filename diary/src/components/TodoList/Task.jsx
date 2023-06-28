@@ -1,23 +1,35 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
-const Task = ( props ) => {
+const TaskCont = styled.div``;
+
+const Center = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+
+const Task = (props) => {
   return (
     <div>
-              <li
-              style={{textDecoration: props.completed ? "line-through" : 'none'}}
-
-              
-              >{props.taskName}</li>
-              <button onClick={() => props.completeTask(props.id)}>
-                <i className="fa fa-check circle"></i>
-              </button>
-              <button onClick={() => props.deletetask(props.id)}>
-                <i className="fa fa-trash"></i>
-              </button>
-              
+      <Center style={{ opacity: props.completed ? "30%" : "100%" }}>
+        <Center>
+          <div>edit button</div>
+          <div>{props.taskName}</div>
+        </Center>
+        <Center>
+          <button onClick={() => props.completeTask(props.id)}>
+            <i className="fa fa-check circle"></i>
+          </button>
+          <button onClick={() => props.deletetask(props.id)}>
+            <i className="fa fa-trash"></i>
+          </button>
+        </Center>
+      </Center>
     </div>
-  )
-}
+  );
+};
 
 Task.propTypes = {
   taskName: PropTypes.string.isRequired,
@@ -27,4 +39,4 @@ Task.propTypes = {
   deletetask: PropTypes.func.isRequired,
 };
 
-export default Task
+export default Task;
