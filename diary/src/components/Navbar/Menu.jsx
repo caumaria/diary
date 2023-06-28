@@ -44,7 +44,7 @@ const Menu = ({ open }) => {
   return (
     <StyledMenu open={open}>
       <a href="/">
-        <span role="img">📕</span>
+        <span role="img">📓</span>
         TodoList
       </a>
       <a href="/timer">
@@ -55,6 +55,11 @@ const Menu = ({ open }) => {
         <span role="img">📩</span>
         Contact
         </a>
+        <a href="/calc">
+        <span role="img">🧮</span>
+        Calc
+        </a>
+
     </StyledMenu>
   )
 }
