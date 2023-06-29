@@ -1,54 +1,100 @@
 import { useState } from "react";
-import Task from "./Task";
+import styled from 'styled-components'
+
+
+const TodoContainer = styled.div`
+`;
 
 const Todolist = () => {
-  const [newTask, setNewTask] = useState("");
   const [list, setList] = useState([]);
+  const [task, setTask] = useState("");
+  const [editing, setEditing] = useState(null);
+  const [editingText, setEditingText] = useState("");
 
-  const handleChange = (event) => setNewTask(event.target.value);
+  function handleSubmit(e) {
+    e.preventDefault();
 
-  const addTask = () => {
-    const task = {
-      id: list.length === 0 ? 1 : list[list.length - 1].id + 1,
-      taskName: newTask,
-      completed: false,
-    };
-    setList([...list, task]);
-  };
-
-  const completeTask = (id) => {
-    setList(list.map((task) => {
-      if (task.id === id) {
-        return {...task, completed: !task.completed }
-      } return task;
-    }))
+    if (task.trim() !== "") {
+      const newTodo = {
+        id: new Date().getTime(),
+        text: task,
+        completed: false,
+      };
+      setList([...list].concat(newTodo));
+      setTask("");
+    }
   }
 
-  const deletetask = (id) => {
-    setList(list.filter((task) => task.id !== id));
+  function deleteTask(id) {
+    let updatedTasks = [...list].filter((todo) => todo.id !== id);
+    setList(updatedTasks);
+  }
+
+  function toggleComplete(id) {
+    let updatedTasks = [...list].map((todo) => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed;
+      }
+      return todo;
+    });
+    setList(updatedTasks);
+  }
+
+  function submitEdits(id) {
+    const updatedTasks = [...list].map((todo) => {
+      if (todo.id === id) {
+        todo.text = editingText;
+      }
+      return todo;
+    });
+    setList(updatedTasks);
+    setEditing(null);
   }
 
   return (
-    <div>
-      <input onChange={handleChange} type="text" required />
-      <button onClick={addTask}>add</button>
+    <div id="todo-list">
+      <h1>Todo List</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          onChange={(e) => setTask(e.target.value)}
+          value={task}
+        />
+        <button type="submit">Add Todo</button>
+      </form>
 
-      <div>
-        <h1>tasks:</h1>
+      {list.map((todo) => (
+        <div key={todo.id} className="todo">
+          <div className="todo-text">
+            {todo.id === editing ? (
+              <input
+                type="text"
+                onChange={(e) => setEditingText(e.target.value)}
+              />
+            ) : (
+              <div>{todo.text}</div>
+            )}
+          </div>
+          <div className="todo-actions">
+            {todo.id === editing ? (
+              <button onClick={() => submitEdits(todo.id)}>
+                <i className="fa fa-edit" style={{ color: "green" }}></i>
+              </button>
+            ) : (
+              <button onClick={() => setEditing(todo.id)}>
+                <i className="fa fa-edit"></i>
+              </button>
+            )}
+            <button onClick={() => toggleComplete(todo.id)}>
+              <i className="fa fa-check circle"></i>
+            </button>
 
-        {list.map((task) => {
-          return <Task 
-
-          taskName={task.taskName} 
-          id={task.id} 
-          key={task.id}
-          deletetask={deletetask}
-          completed={task.completed}
-          completeTask={completeTask}          
-          
-          />
-        })}
-      </div>
+            <button onClick={() => deleteTask(todo.id)}>
+              <i className="fa fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

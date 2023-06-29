@@ -55,7 +55,7 @@ const Menu = ({ open }) => {
         <span role="img">📩</span>
         Contact
         </a>
-        <a href="/calc">
+        <a href="/list">
         <span role="img">🧮</span>
         Calc
         </a>
