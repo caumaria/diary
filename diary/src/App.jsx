@@ -7,6 +7,7 @@ import Todolist from './components/TodoList/Todolist'
 
 const Container = styled.div`
   width: 100%;
+  padding-top: 6rem;
 `;
 
 const MainPage = styled.div`

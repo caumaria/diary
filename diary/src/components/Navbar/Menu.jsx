@@ -5,7 +5,7 @@ const StyledMenu = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: #EFFFFA;
+  background: #FFE5EA;
   transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
   height: 100vh;
   text-align: left;
@@ -20,12 +20,12 @@ const StyledMenu = styled.nav`
     }
 
   a {
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-transform: uppercase;
     padding: 2rem 0;
-    font-weight: bold;
-    letter-spacing: 0.5rem;
-    color: #0D0C1D;
+    font-family: Jua;
+    letter-spacing: 0.3rem;
+    color: #7F3E52;
     text-decoration: none;
     transition: color 0.3s linear;
 
