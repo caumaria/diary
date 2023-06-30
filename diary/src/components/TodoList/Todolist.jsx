@@ -43,7 +43,6 @@ const FormContainer = styled.div`
 const TaskGap = styled.div`
   display: inline-flex;
   flex-direction: column;
-  gap: 0.3rem;
 `;
 
 const TaskContainer = styled.div`
@@ -97,6 +96,9 @@ const TaskName = styled.div`
 
 const TaskDate = styled.div`
   width: 11rem;
+  color: #FFACC5;
+  font-size: 0.820rem;
+  margin-top: 0.35rem;
 `;
 
 const EditingInput = styled.input`
@@ -126,7 +128,7 @@ const AddButton = styled.button`
 const ImgAddButton = styled.img`
   width: 44px;
   height: 44px;
-  margin-top: .35rem;
+  margin-top: 0.35rem;
 `;
 
 const Todolist = () => {
@@ -175,6 +177,14 @@ const Todolist = () => {
     setEditing(null);
   }
 
+  const date = new Date();
+
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+
+  let currentDate = `${day}-${month}-${year}`;
+
   return (
     <TodoListContainer>
       <DailyTitle>Daily • Plan</DailyTitle>
@@ -183,7 +193,7 @@ const Todolist = () => {
         <Form onSubmit={handleSubmit}>
           <TaskInput
             type="text"
-            placeholder='Add new task'
+            placeholder="Add new task"
             onChange={(e) => setTask(e.target.value)}
             value={task}
           />
@@ -196,7 +206,10 @@ const Todolist = () => {
       <TodoContainer>
         • • •
         {list.map((todo) => (
-          <TaskContainer key={todo.id} style={{ opacity: todo.completed ? "30%" : "100%" }}>
+          <TaskContainer
+            key={todo.id}
+            style={{ opacity: todo.completed ? "30%" : "100%" }}
+          >
             <TaskGap>
               <Center>
                 {todo.id === editing ? (
@@ -225,7 +238,7 @@ const Todolist = () => {
                 <EditButton>
                   <img src={Calendar} alt="Icon of a Calendar" />
                 </EditButton>
-                <TaskDate>data</TaskDate>
+                <TaskDate>{currentDate}</TaskDate>
               </Center>
             </TaskGap>
 
