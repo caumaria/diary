@@ -1,29 +1,56 @@
 import { useState, useEffect } from "react";
-import Button from "../../styles/reusableButton";
+import Titles from "../../styles/reusableh1";
 import styled from "styled-components";
+import Inputs from "../../styles/reusableInput";
+
+const PomodoroContainer = styled.div`
+  background-color: #fffafb;
+  padding: 1rem;
+  display: inline-flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-family: "Jua", sans-serif;
+  border-radius: 1.25rem;
+`;
+
+const TimerContainer = styled.div`
+  width: 22.75rem;
+  height: auto;
+  border-radius: 1.25rem;
+  border: 2px solid #ff7fa6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 0;
+`;
 
 const DivCenter = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
-
-const PomodoroInput = styled.input`
-  font-size: 1.2rem;
-  width: 84px;
-  margin: 0 0.6rem;
-  padding: 8px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: rgba(34, 122, 195, 0.8113620448179272) 27%;
+  padding: 0.5rem;
 `;
 
 const Timer = styled.p`
-    font-size: 4rem;
+  font-size: 4rem;
+`;
+
+const TimerButtons = styled.button`
+  color: #7f3e52;
+  border: none;
+  box-shadow: 0px 4px 8px 0px rgba(255, 172, 197, 0.5);
+  padding: 8px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  margin: 0 0.6rem;
+  background-color: #fff5f6;
+  font-family: "Jua", sans-serif;
 `;
 
 const Pomodoro = () => {
-  const [selectTime, setSelectTime] = useState(25 * 60); // Selected time in seconds
+  const [selectTime, setSelectTime] = useState(25 * 60);
   const [Running, setRunning] = useState(false);
   const [Break, setBreak] = useState(false);
 
@@ -79,11 +106,11 @@ const Pomodoro = () => {
   };
 
   return (
-    <div>
-      <h1>Focus Time</h1>
+    <PomodoroContainer>
+      <Titles>Focus Time</Titles>
 
-      <DivCenter>
-        <PomodoroInput
+      <TimerContainer>
+        <Inputs
           placeholder="Timer"
           type="number"
           min="25"
@@ -92,17 +119,19 @@ const Pomodoro = () => {
           value={!Running ? selectTime / 60 : ""}
           onChange={handleTimeChange}
         />
-        <Button onClick={handleShortBreak}>Short Break</Button>
-        <Button onClick={handleLongBreak}>Long Break</Button>
-      </DivCenter>
+        <DivCenter>
+          <TimerButtons onClick={handleShortBreak}>Short Break</TimerButtons>
+          <TimerButtons onClick={handleLongBreak}>Long Break</TimerButtons>
+        </DivCenter>
 
-      <Timer>{formatTime(selectTime)}</Timer>
+        <Timer>{formatTime(selectTime)}</Timer>
 
-      <div>
-        <Button onClick={() => setRunning(true)}>Start</Button>
-        <Button onClick={handleReset}>Reset</Button>
-      </div>
-    </div>
+        <div>
+          <TimerButtons onClick={() => setRunning(true)}>Start</TimerButtons>
+          <TimerButtons onClick={handleReset}>Reset</TimerButtons>
+        </div>
+      </TimerContainer>
+    </PomodoroContainer>
   );
 };
 

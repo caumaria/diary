@@ -76,6 +76,7 @@ const TaskButtons = styled.button`
   border: none;
   width: 36px;
   height: 36px;
+  cursor: pointer;
 `;
 
 const EditButton = styled.button`
@@ -83,6 +84,7 @@ const EditButton = styled.button`
   border: none;
   width: 10px;
   height: 11px;
+  cursor: pointer;
 `;
 
 const TaskName = styled.div`
