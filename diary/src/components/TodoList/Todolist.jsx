@@ -169,6 +169,10 @@ const Todolist = () => {
   }
 
   function submitEdits(id) {
+    if (editingText.trim() === '') {
+      return;
+    }
+
     const updatedTasks = [...list].map((todo) => {
       if (todo.id === id) {
         todo.text = editingText;
