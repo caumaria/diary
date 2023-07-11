@@ -50,15 +50,7 @@ const Menu = ({ open }) => {
       <a href="/timer">
         <span role="img">⏰</span>
         Timer
-        </a>
-      <a href="*">
-        <span role="img">📩</span>
-        Contact
-        </a>
-        <a href="/list">
-        <span role="img">🧮</span>
-        Calc
-        </a>
+      </a>
 
     </StyledMenu>
   )

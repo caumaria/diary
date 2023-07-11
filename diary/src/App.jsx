@@ -24,7 +24,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Todolist />} />
           <Route path="/timer" element={<Pomodoro />} />
-          <Route path="/list" element={<Todolist />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </MainPage>
