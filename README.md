@@ -10,9 +10,9 @@
 # 🧠 About<br>
 
 <br>
-Agenda App • TodoList | Timer | Notes <br>
+Agenda App • TodoList | Timer <br>
 <br>
-Designed to enhance productivity and streamline daily tasks,
+Designed to enhance productivity and streamline daily tasks.<br>
 Stay focused and make the most out of your time with Pomodoro timer, a proven technique for boosting productivity. <br>
 
 # 🕹️ Features: 
