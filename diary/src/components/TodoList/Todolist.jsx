@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState} from "react";
 import styled from "styled-components";
 import Complete from "../../assets/IconComplete.svg";
 import Trash from "../../assets/IconTrash.svg";
 import Edit from "../../assets/IconEdit.svg";
 import Calendar from "../../assets/IconCalendar.svg";
 import Add from "../../assets/IconAdd.svg";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 const TodoListContainer = styled.div`
   background-color: #fffafb;
@@ -134,7 +135,7 @@ const ImgAddButton = styled.img`
 `;
 
 const Todolist = () => {
-  const [list, setList] = useState([]);
+  const [list, setList] = useLocalStorage("todos", []);
   const [task, setTask] = useState("");
   const [editing, setEditing] = useState(null);
   const [editingText, setEditingText] = useState("");
@@ -182,6 +183,7 @@ const Todolist = () => {
     setList(updatedTasks);
     setEditing(null);
   }
+
 
   const date = new Date();
 
